@@ -41,8 +41,9 @@
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ url('') }}" class="nav-link"
+                                <a href="{{ url('/categories') }}" class="nav-link"
                                     data-key="t-category">Categories</a>
+
                             </li>
                             <li class="nav-item">
                                <a href="{{ url('/product') }}" class="nav-link"
