@@ -7,13 +7,13 @@
     <div class="page-content">
         <div class="container-fluid">
             
-            <form action= "{{ url("products")}}" method="POST" enctype="multipart/form-data">
+            <form action= "{{ url("products/" . $products->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('POST')
+                @method('PUT')
             
             <div class="input-group">
                 <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-                <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <input type="text" name="name" value="{{ $products->name }}"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
            
             <div class="mb-3">
@@ -30,7 +30,7 @@
 
             <div class="input-group">
                 <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-                <input type="text" name="description" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <input type="text" name="description" value="{{ $products->description}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
             {{-- <div class="input-group">
                 <span class="input-group-text" id="inputGroup-sizing-default">Image</span>
@@ -51,12 +51,13 @@
       
                 <div class="mb-3">
                     <label class="form-label" for="inputImage">Image:</label>
-                    <input 
+                    <input value="{{$products->image}}"
                         type="file" 
                         name="image" 
                         id="inputImage"
                         class="form-control @error('image') is-invalid @enderror">
-      
+
+                        
                     @error('image')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -73,7 +74,7 @@
 
             <div class="input-group">
                 <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
-                <input type="text" name="price" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <input type="text" name="price" value="{{ $products->price }}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
 
 

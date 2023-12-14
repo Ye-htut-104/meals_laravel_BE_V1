@@ -23,8 +23,10 @@ class ProductController extends Controller
     public function index()
     {   
         // dd("hi");
+        $categories= Category::all();
+
         $products=$this->ProductInterface->all();
-        return view('admin.products.index', compact("products"));
+        return view('admin.products.index', compact("products","categories"));
     }
 
     /**
@@ -33,7 +35,7 @@ class ProductController extends Controller
     public function create()
     {   
         $categories= Category::all();
-        return view('admin.products.create');
+        return view('admin.products.create', compact("categories"));
     }
 
     /**
@@ -41,8 +43,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {   
-        $this->ProductInterface->store();
-        dd($all);
+        $this->ProductInterface->store($request);
         return redirect('products');
         
     }
@@ -59,16 +60,22 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   
+        $categories= Category::all();
+
+        $products=$this->ProductInterface->findbyId($id);
+        return view('admin.products.edit', compact("products" ,"categories"));
     }
+
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update($id)
     {
-        //
+        $this->ProductInterface->update($id);
+        return redirect('products');
     }
 
     /**
@@ -76,6 +83,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->ProductInterface->destroy($id);
+        return redirect('products');
     }
 }

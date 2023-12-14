@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string("name", 255)->nullable();
             $table->foreignId("category_id")->nullable();
             $table->text("description")->nullable();
-            $table->string("image", 255)->nullable();
-            $table->decimal("price", 6, 2);
+            $table->string("image")->nullable();
+            $table->decimal("price", 12, 2);
             $table->timestamps();
         });
     }

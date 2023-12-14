@@ -26,24 +26,32 @@
             <tr>
                 <th scope="row">{{ $product->id }}</th>
                 <td>{{ $product->name }}</td>
-                \
-                <td>{{ $product->category->name }}</td>
-                {{-- <td> {{ $product->category?
-                    $product->category->name:"NOOOO"}}</td> --}}
+                
+                {{-- <td>{{ $product->category->name }}</td> --}}
+                <td> {{ $product->category?
+                    $product->category->name:"NOOOO"}}</td>
                 <td>{{ $product->description }}</td>
-                <td>{{ $product->image }}</td>
+                <td>
+                    @if(isset ($product->image))
+                    <img src="{{ asset ('images/'.$product->image) }}" alt="{{ $product->name }}" width="50px">
+                    @else
+                    No Image
+                    @endif
+                  </td>
+
+
+                {{-- <td>{{ $product->image }}</td> --}}
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->created_at }}</td>
                 <td>{{ $product->updated_at }}</td>
 
                 <th>
                     
-                    {{-- <a href="{{ url('categories/' . $category->id . '/edit') }}"><button
+                    <a href="{{ url('products/' . $product->id . '/edit') }}"><button
                             class="btn btn-warning">edit</button></a>
-                    <a href="{{ url('brand/' . $category->id) }}"><button
-                            class="btn btn-secondary">show</button></a>
+                    
 
-                    <form action="{{ url('categories/' . $category->id  ) }}"
+                    <form action="{{ url('products/' . $product->id  ) }}"
                         method="POST">
                         @csrf
                         @method('DELETE')
@@ -52,7 +60,7 @@
                             class="btn btn-danger">Delete</button>
 
 
-                    </form> --}}
+                    </form>
 
                 </th>
             </tr>
